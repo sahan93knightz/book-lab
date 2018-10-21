@@ -67,7 +67,8 @@ $show_notification = $notification != '';
 					</div>
 					<div class="body">
 						<div class="table-responsive">
-							<table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+							<table class="table table-bordered table-striped table-hover dataTable"
+								   id="category-list-table">
 								<thead>
 								<tr>
 									<th>ID</th>
@@ -121,6 +122,9 @@ include_once APPPATH . "views/common/js.php";
 	<script>
 
 		$(document).ready(function () {
+			$('#category-list-table').DataTable({
+				responsive: true
+			});
 			console.log('asdf');
 			$.notify({
 				// options

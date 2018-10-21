@@ -115,17 +115,10 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);" class="menu-toggle">
+					<a href="/admin/category">
 						<i class="material-icons">widgets</i>
 						<span>Categories</span>
 					</a>
-					<ul class="ml-menu">
-						<li>
-							<a href="/admin/category" class="menu-toggle">
-								<span>Create Category</span>
-							</a>
-						</li>
-					</ul>
 				</li>
 			</ul>
 		</div>

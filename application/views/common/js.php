@@ -33,8 +33,10 @@
 <!-- Bootstrap Notify Plugin Js -->
 <script src="/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
+<!-- Jquery DataTable Plugin Js -->
+<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
 <!-- Custom Js -->
 <script src="/js/admin.js"></script>
 
-<!-- Demo Js -->
-<script src="/js/demo.js"></script>
