@@ -9,15 +9,15 @@ class Category_Model extends CI_Model
 
 	public function save($categoryName, $createdOn)
 	{
-		$this->category_name = $categoryName;
-		$this->created_on = $createdOn;
+		$this->category_name = htmlspecialchars($categoryName);
+		$this->created_on = htmlspecialchars($createdOn);
 		$this->db->insert('category', $this);
 	}
 
 	public function update($id, $categoryName)
 	{
 		$this->db->where('id', $id);
-		$this->db->update('category', array('category_name' => $categoryName));
+		$this->db->update('category', array('category_name' => htmlspecialchars($categoryName)));
 	}
 
 	public function loadAll()
