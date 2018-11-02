@@ -18,7 +18,7 @@ class BookLib
 		$this->ci->load->model('book_model');
 	}
 
-	public function save($title, $author, $category_id, $id = 0)
+	public function save($title, $author, $category_id, $unit_price, $description, $image_name, $id = 0)
 	{
 		if ($title == '') {
 			throw new RuntimeException('Title cannot be empty');
@@ -30,9 +30,9 @@ class BookLib
 
 		$this->checkAvailability($title, $id);
 		if ($id == 0) {
-			return $this->ci->book_model->save($title, $author, $category_id, date("Y-m-d H:i:s"));
+			return $this->ci->book_model->save($title, $author, $category_id, $unit_price, $description, $image_name, date("Y-m-d H:i:s"));
 		} else {
-			return $this->ci->book_model->update($id, $title, $author, $category_id);
+			return $this->ci->book_model->update($id, $title, $author, $category_id, $unit_price, $description, $image_name);
 		}
 	}
 

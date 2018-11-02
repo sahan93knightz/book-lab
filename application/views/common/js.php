@@ -34,8 +34,17 @@
 <script src="/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
 <!-- Jquery DataTable Plugin Js -->
-<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
+<!-- Select Plugin Js -->
+<script src="/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Input Mask Plugin Js -->
+<script src="/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+<!-- Dropzone Plugin Js -->
+<script src="/plugins/dropzone/dropzone.js"></script>
 
 <!-- Custom Js -->
 <script src="/js/admin.js"></script>

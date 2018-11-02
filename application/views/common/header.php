@@ -37,6 +37,12 @@
 	<!-- Morris Chart Css-->
 	<link href="/plugins/morrisjs/morris.css" rel="stylesheet"/>
 
+	<!-- Bootstrap Select Css -->
+	<link href="/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet"/>
+
+	<!-- Dropzone Css -->
+	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+
 	<!-- Custom Css -->
 	<link href="/css/style.css" rel="stylesheet">
 
@@ -118,6 +124,12 @@
 					<a href="/admin/category">
 						<i class="material-icons">widgets</i>
 						<span>Categories</span>
+					</a>
+				</li>
+				<li>
+					<a href="/admin/book">
+						<i class="material-icons">book</i>
+						<span>Books</span>
 					</a>
 				</li>
 			</ul>

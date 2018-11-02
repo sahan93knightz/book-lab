@@ -7,6 +7,8 @@ class Category extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('authlib');
+		$this->authlib->auth();
 		$this->load->library('categorylib');
 	}
 

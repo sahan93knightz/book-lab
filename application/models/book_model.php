@@ -7,21 +7,27 @@ class Book_Model extends CI_Model
 	public $title;
 	public $author;
 	public $category_id;
+	public $unit_price;
+	public $image_name;
 	public $created_on;
+	public $description;
 
-	public function save($title, $author, $category_id, $createdOn)
+	public function save($title, $author, $category_id, $unit_price, $description, $image_name, $createdOn)
 	{
 		$this->title = $title;
 		$this->author = $author;
 		$this->category_id = $category_id;
+		$this->unit_price = $unit_price;
+		$this->image_name = $image_name;
 		$this->created_on = $createdOn;
+		$this->description = $description;
 		$this->db->insert('book', $this);
 	}
 
-	public function update($id, $title, $author, $category_id)
+	public function update($id, $title, $author, $category_id, $unit_price, $description, $image_name)
 	{
 		$this->db->where('id', $id);
-		$this->db->update('category', array('title' => $title, 'author' => $author, 'category_id' => $category_id));
+		$this->db->update('category', array('title' => $title, 'author' => $author, 'unit_price' => $unit_price, ', image_name' => $image_name, 'category_id' => $category_id, 'description' => $description));
 	}
 
 	public function loadAll()

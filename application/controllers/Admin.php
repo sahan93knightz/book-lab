@@ -21,12 +21,27 @@ class Admin extends CI_Controller
 	 */
 	public function index()
 	{
-		$this->load->view('admin/home');
-	}
+		$data = array();
+		if ($this->input->method() == 'post') {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
 
-	public function login()
-	{
-		$this->load->view('admin/login');
+			if ($username == 'admin' && $password == 'admin') {
+				$newdata = array(
+					'username' => 'admin',
+					'email' => 'admin@booklab.com',
+					'logged_in' => TRUE
+				);
+
+				$this->session->set_userdata($newdata);
+				$this->load->helper('url');
+				redirect('admin/category');
+			} else {
+				$data['error'] = 'Invalid Username or Password';
+			}
+		} else {
+			$this->load->view('admin/login', $data);
+		}
 	}
 
 }

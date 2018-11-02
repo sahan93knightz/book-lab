@@ -53,4 +53,5 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['admin/category/*'] = 'category';
+$route['admin/book/*'] = 'book';
 $route['admin/*'] = 'admin';
