@@ -42,7 +42,7 @@ class Book_Model extends CI_Model
 
 	public function getBook($id)
 	{
-		$this->db->select('*');
+		$this->db->select('book.id as id, book.title, book.author, book.unit_price, book.description, book.image_name, category.id as category_id, category.category_name');
 		$this->db->from('book');
 		$this->db->join('category', 'category.id = book.category_id');
 		$this->db->where('book.id', $id);
