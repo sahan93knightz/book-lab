@@ -39,4 +39,27 @@ class Category_Model extends CI_Model
 	{
 		return $this->db->query('SELECT * FROM category WHERE id != ? AND category_name = ?', array($id, $categoryName));
 	}
+
+	public function mostViewedCategories()
+	{
+		$sql = 'SELECT
+					category.* 
+				FROM
+					category
+					INNER JOIN (
+				SELECT
+					book.category_id,
+					count( book.category_id ) a 
+				FROM
+					book_statistics
+					INNER JOIN book ON book.id = book_statistics.book_id 
+				GROUP BY
+					book.category_id 
+				ORDER BY
+					a DESC 
+					LIMIT 3 
+				) AS b ON category.id = b.category_id';
+
+		return $this->db->query($sql)->result();
+	}
 }

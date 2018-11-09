@@ -17,6 +17,10 @@ $show_notification = $notification != '';
 	div.form-control.bootstrap-select {
 		margin-top: 10px;
 	}
+
+	tr {
+		cursor: pointer;
+	}
 </style>
 <section class="content">
 	<div class="container-fluid">
@@ -26,8 +30,8 @@ $show_notification = $notification != '';
 		</div>
 
 		<div class="row clearfix">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 				<div class="card">
 					<div class="header">
 						<h2>
@@ -66,8 +70,7 @@ $show_notification = $notification != '';
 										<div class="form-line">
 											<label class="form-label">Category</label>
 											<select class="form-control show-tick"
-													name="category_id"
-													value="<?php echo $category_id ?>">
+													name="category_id">
 												<option value="-1" disabled>-- Please Select --</option>
 												<?php
 												foreach ($categories as $category) {
@@ -125,11 +128,11 @@ $show_notification = $notification != '';
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
 		</div>
 		<div class="row clearfix">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 				<div class="card">
 					<div class="header">
 						<h2>
@@ -148,7 +151,6 @@ $show_notification = $notification != '';
 									<th>Category</th>
 									<th>Unit Price</th>
 									<th>Created On</th>
-									<th>Actions</th>
 								</tr>
 								</thead>
 								<tfoot>
@@ -159,23 +161,18 @@ $show_notification = $notification != '';
 									<th>Category</th>
 									<th>Unit Price</th>
 									<th>Created On</th>
-									<th>Actions</th>
 								</tr>
 								</tfoot>
 								<tbody>
 								<?php
 								foreach ($books as $book) {
-									echo '<tr>
+									echo '<tr onclick="window.location=\'' . base_url() . 'admin/book/' . $book->id . '\'">
 																			<td>' . $book->id . '</td>
 																			<td>' . $book->title . '</td>
 																			<td>' . $book->author . '</td>
-																			<td>' . $categories[$book->category_id]->category_name . '</td>
+																			<td>' . $book->category_name . '</td>
 																			<td>Rs. ' . number_format($book->unit_price, 2, '.', ',') . '</td>
 																			<td>' . $book->created_on . '</td>
-																			<td class="text-center">
-																				<a href="/admin/book?id=' . $book->id . '" class="btn btn-xs btn-default waves-effect"><i class="material-icons">edit</i></a>
-																				<a href="javascript:void(0)" class="btn btn-xs btn-default waves-effect"><i class="material-icons">delete</i></a>
-																			</td>
 																		</tr>';
 								}
 								?>
@@ -185,7 +182,7 @@ $show_notification = $notification != '';
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
 		</div>
 
 	</div>
@@ -196,16 +193,11 @@ include_once APPPATH . "views/common/js.php";
 
 ?>
 
-<script src="/js/pages/ui/notifications.js"></script>
-
 <script>
-	var myDropzone;
-	Dropzone.autoDiscover = false;
 	$(document).ready(function () {
 		$('#book-list-table').DataTable({
 			responsive: true
 		});
-		console.log('asdf');
 		<? if ($show_notification) { ?>
 		$.notify({
 			// options

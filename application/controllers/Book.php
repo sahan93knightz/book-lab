@@ -1,5 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * Created by IntelliJ IDEA.
+ * User: sahan
+ * Date: 11/3/18
+ * Time: 3:18 PM
+ */
 
 class Book extends CI_Controller
 {
@@ -7,47 +12,34 @@ class Book extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('authlib');
-		$this->authlib->auth();
-		$this->load->library('categorylib');
-		$this->load->library('booklib');
-		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = '1000';
-		$config['encrypt_name'] = TRUE;
-
-		$this->load->library('upload', $config);
+		$this->load->helper('url');
+		$this->load->library('clientlib');
 	}
 
-	public function index()
+
+	public function productLookupById($bookId)
 	{
-		$data = array('title' => '', 'id' => '', 'author' => '', 'unit_price' => '', 'description' => '');
-		$data['categories'] = $this->categorylib->loadAllCategories();
-		try {
-			if ($this->input->method() == 'post') {
-				$field_name = "cover_image";
-				if ($this->upload->do_upload($field_name)) {
-					$title = $this->input->post('title');
-					$id = $this->input->post('id');
-					$author = $this->input->post('author');
-					$category_id = $this->input->post('category_id');
-					$unit_price = $this->input->post('unit_price');
-					$description = $this->input->post('description');
-					$image_name = $this->upload->data('file_name');
-					$this->booklib->save($title, $author, $category_id, $unit_price, $description, $image_name, $id);
-					$data['msg'] = 'Book Created Successfully';
-				} else {
-					$data['errmsg'] = $this->upload->display_errors();
-				}
-			} else {
-
-			}
-		} catch (Exception $e) {
-			$data['errmsg'] = $e->getMessage();
-		}
-		$data['books'] = $this->booklib->loadAllBooks();
-		$this->load->view('admin/book', $data);
+		$book = $this->booklib->getBook($bookId);
+		$this->booklib->markProductView($bookId);
+		$category = $this->categorylib->getCategory($book->category_id);
+		$this->data['book'] = $book;
+		$this->data['books'] = $this->booklib->getMostViewedBooks($bookId);
+		$this->data['selectedCategory'] = $category;
+		$this->load->view('book_details', $this->data);
 	}
 
+	public function addToCart()
+	{
+		$bookId = $this->input->post('bookId');
+		$qty = $this->input->post('qty');
+		$this->clientlib->addToCart($bookId, $qty);
+		redirect('book/' . $bookId);
+	}
+
+	public function removeFromCart($id)
+	{
+		$this->clientlib->removeFromCart($id);
+		echo 'Success ' . $id;
+	}
 
 }

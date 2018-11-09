@@ -32,12 +32,21 @@ class Book_Model extends CI_Model
 
 	public function loadAll()
 	{
-		return $this->db->get('book')->result();
+		return $this->db->query('SELECT
+				book.*,
+				category.category_name 
+			FROM
+				book
+				INNER JOIN category ON book.category_id = category.id')->result();
 	}
 
 	public function getBook($id)
 	{
-		$result = $this->db->get_where('book', array('id' => $id));
+		$this->db->select('*');
+		$this->db->from('book');
+		$this->db->join('category', 'category.id = book.category_id');
+		$this->db->where('book.id', $id);
+		$result = $this->db->get();
 		if ($result->num_rows() == 0) {
 			throw new RuntimeException('Book Not Found');
 		}
@@ -48,5 +57,57 @@ class Book_Model extends CI_Model
 	public function idNotEqualAndNameEqual($id, $title)
 	{
 		return $this->db->query('SELECT * FROM book WHERE id != ? AND title = ?', array($id, $title));
+	}
+
+	public function loadBooksByCategory($categoryId, $page, $perPage)
+	{
+		if ($perPage > 0)
+			$this->db->limit($perPage, $page);
+		$result = $this->db->get_where('book', array('category_id' => $categoryId));
+		return $result->result();
+	}
+
+	public function countBooksByCategory($categoryId)
+	{
+		$this->db->where('category_id', $categoryId);
+		$this->db->from('book');
+		$result = $this->db->count_all_results();
+		return $result;
+	}
+
+	function getMostViewedBooks($bookId)
+	{
+		$sql = 'SELECT
+					book.* 
+				FROM
+					book
+					INNER JOIN (
+				SELECT
+					book_id,
+					count( book_id ) a 
+				FROM
+					book_statistics 
+				WHERE
+					u_id IN ( SELECT u_id FROM book_statistics WHERE book_id = ? ) 
+					AND book_id != ? 
+				GROUP BY
+					book_id 
+				ORDER BY
+					a DESC 
+					LIMIT 5 
+			) AS b ON book.id = b.book_id';
+		$result = $this->db->query($sql, array($bookId, $bookId));
+		return $result->result();
+	}
+
+	function getMostViewedBooksAll()
+	{
+		$sql = 'SELECT
+				book.* 
+			FROM
+				book
+				INNER JOIN ( SELECT book_id, count( book_id ) a FROM book_statistics GROUP BY book_id ORDER BY a DESC LIMIT 5 ) AS b ON book.id = b.book_id';
+		$result = $this->db->query($sql);
+		return $result->result();
 	}
 }

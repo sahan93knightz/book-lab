@@ -18,7 +18,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
 	<!-- Favicon-->
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/client/img/core-img/favicon.png">
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
@@ -26,28 +26,23 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
 	<!-- Bootstrap Core Css -->
-	<link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="/admin_resources/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 	<!-- Waves Effect Css -->
-	<link href="/plugins/node-waves/waves.css" rel="stylesheet"/>
+	<link href="/admin_resources/plugins/node-waves/waves.css" rel="stylesheet"/>
 
 	<!-- Animation Css -->
-	<link href="/plugins/animate-css/animate.css" rel="stylesheet"/>
-
-	<!-- Morris Chart Css-->
-	<link href="/plugins/morrisjs/morris.css" rel="stylesheet"/>
+	<link href="/admin_resources/plugins/animate-css/animate.css" rel="stylesheet"/>
 
 	<!-- Bootstrap Select Css -->
-	<link href="/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet"/>
-
-	<!-- Dropzone Css -->
-	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+	<link href="/admin_resources/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet"/>
 
 	<!-- Custom Css -->
-	<link href="/css/style.css" rel="stylesheet">
+	<link href="/admin_resources/css/style.css" rel="stylesheet">
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-	<link href="/css/themes/all-themes.css" rel="stylesheet"/>
+	<link href="/admin_resources/css/themes/all-themes.css" rel="stylesheet"/>
+
 </head>
 
 <body class="theme-blue">
@@ -90,21 +85,15 @@
 		<!-- User Info -->
 		<div class="user-info">
 			<div class="image">
-				<img src="/images/user.png" width="48" height="48" alt="User"/>
+				<img src="/admin_resources/images/user.png" width="48" height="48" alt="User"/>
 			</div>
 			<div class="info-container">
-				<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-				<div class="email">john.doe@example.com</div>
+				<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+				<div class="email">admin@booklab.com</div>
 				<div class="btn-group user-helper-dropdown">
 					<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-						<li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-						<li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+						<li><a href="/admin/logout"><i class="material-icons">input</i>Sign Out</a></li>
 					</ul>
 				</div>
 			</div>
@@ -114,19 +103,13 @@
 		<div class="menu">
 			<ul class="list">
 				<li class="header">MAIN NAVIGATION</li>
-				<li class="active">
-					<a href="../index.html">
-						<i class="material-icons">home</i>
-						<span>Home</span>
-					</a>
-				</li>
-				<li>
+				<li id="category_menu">
 					<a href="/admin/category">
 						<i class="material-icons">widgets</i>
 						<span>Categories</span>
 					</a>
 				</li>
-				<li>
+				<li id="book_menu">
 					<a href="/admin/book">
 						<i class="material-icons">book</i>
 						<span>Books</span>
@@ -137,8 +120,12 @@
 		<!-- #Menu -->
 		<!-- Footer -->
 		<div class="legal">
+			<div>
+				<strong>Book<span class="text-muted">Lab</span></strong> - Sahan Ranasinghe
+			</div>
+			<hr>
 			<div class="copyright">
-				&copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+				&copy; 2018 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
 			</div>
 			<div class="version">
 				<b>Version: </b> 1.0.5

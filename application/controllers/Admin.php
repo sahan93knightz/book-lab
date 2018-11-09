@@ -4,6 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('url');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -34,14 +41,24 @@ class Admin extends CI_Controller
 				);
 
 				$this->session->set_userdata($newdata);
-				$this->load->helper('url');
 				redirect('admin/category');
 			} else {
 				$data['error'] = 'Invalid Username or Password';
 			}
 		} else {
-			$this->load->view('admin/login', $data);
+			$userData = $this->session->userdata();
+			if (isset($userData['logged_in'])) {
+				redirect('admin/category');
+			} else {
+				$this->load->view('admin/login', $data);
+			}
 		}
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('admin');
 	}
 
 }

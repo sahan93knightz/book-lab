@@ -95,7 +95,6 @@ $show_notification = $notification != '';
 											<td>' . $category->created_on . '</td>
 											<td class="text-center">
 												<a href="/admin/category?id=' . $category->id . '" class="btn btn-xs btn-default waves-effect"><i class="material-icons">edit</i></a>
-												<a href="javascript:void(0)" class="btn btn-xs btn-default waves-effect"><i class="material-icons">delete</i></a>
 											</td>
 										</tr>';
 								}
@@ -117,44 +116,44 @@ include_once APPPATH . "views/common/js.php";
 
 ?>
 
-<script src="/js/pages/ui/notifications.js"></script>
-<? if ($show_notification) { ?>
-	<script>
+<script>
 
-		$(document).ready(function () {
-			$('#category-list-table').DataTable({
-				responsive: true
-			});
-			console.log('asdf');
-			$.notify({
-				// options
-				icon: 'glyphicon glyphicon-success-sign',
-				message: '<? echo $notification ?>'
-			}, {
-				// settings
-				element: '.content',
-				position: null,
-				type: '<? echo $notification_type ?>',
-				allow_dismiss: true,
-				newest_on_top: false,
-				showProgressbar: false,
-				placement: {
-					from: "top",
-					align: "right"
-				},
-				z_index: 1031,
-				delay: 5000,
-				timer: 1000,
-				url_target: '_blank',
-				animate: {
-					enter: 'animated fadeInDown',
-					exit: 'animated fadeOutUp'
-				},
-				icon_type: 'class'
-			});
-		})
-	</script>
-<? } ?>
+	$(document).ready(function () {
+
+		$('#category-list-table').DataTable({
+			responsive: true
+		});
+
+		<? if ($show_notification) { ?>
+		$.notify({
+			// options
+			icon: 'glyphicon glyphicon-success-sign',
+			message: '<? echo $notification ?>'
+		}, {
+			// settings
+			element: '.content',
+			position: null,
+			type: '<? echo $notification_type ?>',
+			allow_dismiss: true,
+			newest_on_top: false,
+			showProgressbar: false,
+			placement: {
+				from: "top",
+				align: "right"
+			},
+			z_index: 1031,
+			delay: 5000,
+			timer: 1000,
+			url_target: '_blank',
+			animate: {
+				enter: 'animated fadeInDown',
+				exit: 'animated fadeOutUp'
+			},
+			icon_type: 'class'
+		});
+		<? } ?>
+	})
+</script>
 
 <?php
 include_once APPPATH . "views/common/footer.php";
