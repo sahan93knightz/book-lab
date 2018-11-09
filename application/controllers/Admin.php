@@ -4,6 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('url');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -21,12 +28,37 @@ class Admin extends CI_Controller
 	 */
 	public function index()
 	{
-		$this->load->view('admin/home');
+		$data = array();
+		if ($this->input->method() == 'post') {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+
+			if ($username == 'admin' && $password == 'admin') {
+				$newdata = array(
+					'username' => 'admin',
+					'email' => 'admin@booklab.com',
+					'logged_in' => TRUE
+				);
+
+				$this->session->set_userdata($newdata);
+				redirect('admin/category');
+			} else {
+				$data['error'] = 'Invalid Username or Password';
+			}
+		} else {
+			$userData = $this->session->userdata();
+			if (isset($userData['logged_in'])) {
+				redirect('admin/category');
+			} else {
+				$this->load->view('admin/login', $data);
+			}
+		}
 	}
 
-	public function login()
+	public function logout()
 	{
-		$this->load->view('admin/login');
+		$this->session->sess_destroy();
+		redirect('admin');
 	}
 
 }
