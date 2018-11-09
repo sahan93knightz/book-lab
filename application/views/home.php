@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<!-- Title  -->
-	<title>Essence - Fashion Ecommerce Template</title>
+	'<title>BookLab - The Best Book Collection</title>
 
 	<!-- Favicon  -->
 	<link rel="icon" href="/client/img/core-img/favicon.png">
